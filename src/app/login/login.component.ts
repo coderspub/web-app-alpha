@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms'
 import { AuthService } from'../auth.service';
-import { Router, RoutesRecognized } from '@angular/router'
-import { routerNgProbeToken } from '@angular/router/src/router_module';
+import { Router } from '@angular/router'
+import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -10,7 +11,9 @@ import { routerNgProbeToken } from '@angular/router/src/router_module';
 })
 export class LoginComponent implements OnInit {
   loginAlert:Boolean = false;
-  constructor(private Auth:AuthService, private router : Router) { }
+  pageinfo:string = "Sign in";
+
+  constructor(private Auth:AuthService, private router : Router,private http: HttpClient) { }
 
   ngOnInit() {
   }
@@ -18,24 +21,20 @@ sub(form:NgForm){
 
   const username = form.value.username;
   const passwrd = form.value.passwrd;
-  // this.Auth.getUserDetails(username,passwrd).subscribe(data=>{
-  //   // if(data.success){
-  //   //   //redirect to home
-  //   // }
-  //   // else{
-  //   //   window.alert("invalid");
-  //   // }
-  //   console.log(data);
-  // },
-  // error =>{
-  //   console.log("error",error);
-  // });
-  if(username === "admin" && passwrd === "admin"){
-    //redirect to home
-   this.router.navigate(["home"])
-  }
-  else{
-    this.loginAlert = true;
-  }
+if( username !='' && passwrd != '' ){
+  this.Auth.getUserDetails(username,passwrd).subscribe(data=>{
+    if(data['status']===true){
+      console.log("authenticated");
+    }
+    else{
+      this.loginAlert = true;
+    }
+  });
+}
+
 }
 }
+
+
+
+

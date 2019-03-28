@@ -9,17 +9,13 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  getUserDetails(username1,passwrd1){
-    let data ={
-      username : username1,
-      passwrd:passwrd1
+  getUserDetails(username,passwrd){
+    const data ={
+      username: username,
+       passwrd: passwrd
+      }
+    return this.http.post("http://192.168.1.3:5000/authorize",data,{headers:new HttpHeaders().set("Content-type", 'application/json')})
 
-    }
-    console.log(data);
-    //post details to API
-return this.http.post('http://127.0.0.1:8001/fleet/rest/auth',{
-data,
-headers:new HttpHeaders().set("Content-Type", "application/x-www-form-urlencoded").append("status","200").append("ok","true")
-   })
   }
+
 }

@@ -1,7 +1,7 @@
-<div class="container title title-container">
-  <h1>Dream Company</h1>
-  <h4>{{ pageinfo }}</h4>
-</div>
+  <div class="container title title-container">
+        <h1>Dream Company</h1>
+        <h4>{{ pageinfo }}</h4>
+  </div>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <div class="container container-fluid ">
 <form class="form-signin" (ngSubmit)="sub(f)" #f="ngForm">
@@ -24,7 +24,6 @@
     <label for="inputPassword">Password</label>
     <small  class="form-text text-muted" *ngIf="!passwrd.valid && passwrd.touched">Enter a valid Password</small>
   </div>
-  <button class="btn btn-lg btn-primary btn-block" type="submit" >Sign in</button>
+  <button class="btn btn-lg btn-primary btn-block" type="submit" >Sign up</button>
   
 </form>
-</div>

@@ -7,12 +7,19 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-
+import { FooterComponent } from './footer/footer.component';
+import { SignupComponent } from './signup/signup.component';
+import { WelcomeComponent } from './welcome/welcome.component';
+import { BannerComponent } from './banner/banner.component';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    FooterComponent,
+    SignupComponent,
+    WelcomeComponent,
+    BannerComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +29,15 @@ import { HttpClientModule } from '@angular/common/http';
     RouterModule.forRoot([
       {
         path:'',
+        component:WelcomeComponent
+      },
+      {
+        path:'signin',
         component:LoginComponent
+      },
+      {
+        path:'signup',
+        component:SignupComponent
       },
       {
         path:'home',
