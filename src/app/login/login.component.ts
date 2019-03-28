@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms'
 import { AuthService } from'../auth.service';
 import { Router } from '@angular/router'
-import { HttpClient,HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient} from '@angular/common/http';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -24,10 +23,12 @@ sub(form:NgForm){
 if( username !='' && passwrd != '' ){
   this.Auth.getUserDetails(username,passwrd).subscribe(data=>{
     if(data['status']===true){
-      console.log("authenticated");
+  this.router.navigate(['home'])
+  this.Auth.setLoggedIn(true);
     }
     else{
       this.loginAlert = true;
+      this.Auth.setLoggedIn(false);
     }
   });
 }

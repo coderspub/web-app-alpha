@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
+import { AuthService } from'../auth.service';
 @Component({
   selector: 'app-banner',
   templateUrl: './banner.component.html',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BannerComponent implements OnInit {
 
-  constructor() { }
+  constructor( private router : Router,private Auth:AuthService) { }
 
   ngOnInit() {
+  }
+  signout(){
+    this.router.navigate([''])
+    this.Auth.setLoggedIn(false);
   }
 
 }

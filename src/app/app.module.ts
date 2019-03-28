@@ -11,6 +11,9 @@ import { FooterComponent } from './footer/footer.component';
 import { SignupComponent } from './signup/signup.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { BannerComponent } from './banner/banner.component';
+import { AuthGuard } from './auth.guard';
+import { AuthService } from './auth.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +22,8 @@ import { BannerComponent } from './banner/banner.component';
     FooterComponent,
     SignupComponent,
     WelcomeComponent,
-    BannerComponent
+    BannerComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -41,11 +45,13 @@ import { BannerComponent } from './banner/banner.component';
       },
       {
         path:'home',
-        component:HomeComponent
+        component:HomeComponent,
+        canActivate:[AuthGuard]
+      
       }
     ])
   ],
-  providers: [],
+  providers: [AuthGuard,AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
